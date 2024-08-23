@@ -122,14 +122,15 @@ namespace SPiApp2
         /// <returns></returns>
         private bool Validate_CompilerInstallation()
         {
-            const string SUB_MESSAGE = " Please reinstall the tools.";
-
+            const string SUB_MESSAGE = "Please reinstall the tools.";
+            const string SPiAPP2FilesFolder = "WaWSPiApp2";
             // 1) Check for the existence of the bin directory
-            string directory = string.Format("{0}{1}bin", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar);
+            //string directory = string.Format("{0}{1}bin", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar);
+            string directory = string.Format("{0}{1}{2}{1}bin", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar , SPiAPP2FilesFolder);
             if (!Directory.Exists(directory))
             {
-                SPiApp2.Controls.Console.WriteLine(string.Format(
-                    "Could not locate the bin directory.{0}", SUB_MESSAGE));
+                //SPiApp2.Controls.Console.WriteLine(string.Format("Could not locate the bin directory.{0}", SUB_MESSAGE));
+                SPiApp2.Controls.Console.WriteLine(string.Format("Could not locate the WaWSPiApp2 or bin directory.{0}", SUB_MESSAGE));
                 return false;
             }
 
@@ -191,8 +192,7 @@ namespace SPiApp2
 
         private bool Validate_PreferencesRequired()
         {
-            if (!Validator.ValidateInstallPath() ||
-                !Validator.ValidateZipper())
+            if (!Validator.ValidateInstallPath() || !Validator.ValidateZipper())
             {
                 return false;
             }

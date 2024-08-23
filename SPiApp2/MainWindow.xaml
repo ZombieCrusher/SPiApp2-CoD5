@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Style="{StaticResource ChromelessWindowStyle}"
     Icon="Resources/app-64x64.ico"
-    Title="(S) Compile Tools for Call of Duty 4" Width="900" Height="620">
+    Title="Compile Tools for Call of Duty World at War" Width="900" Height="620">
     <WindowChrome.WindowChrome>
         <WindowChrome x:Name="chrome"
                       CaptionHeight="24"
@@ -57,17 +57,17 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <Label Grid.Row="0" Grid.Column="0" Margin="3,3,3,3">
-                                    Call of Duty 4 folder:
+                                    Call of Duty WaW folder:
                                 </Label>
                                 <TextBox Grid.Row="0" Grid.Column="1" Margin="0,3,0,3" x:Name="ctrlInstallPath">
-                                    C:\Program Files (x86)\Steam\steamapps\Call of Duty 4
+                                    C:\Program Files (x86)\Steam\steamapps\Call of Duty World at War
                                 </TextBox>
                                 <Button Grid.Row="0" Grid.Column="2" Margin="3,3,3,3" Click="Click_BrowseInstallPath">
                                     Browse
                                 </Button>
                                 <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,3,6"
                                        VerticalContentAlignment="Top" Padding="2,0,2,2">
-                                    WARNING: If the directory does not contain Call of Duty 4 it may result in unexpected behavior.
+                                    WARNING: If the directory does not contain Call of Duty World at War it may result in unexpected behavior.
                                 </Label>
                                 <Label Grid.Row="2" Grid.Column="0" Margin="3,3,3,3">
                                     Language:
@@ -221,11 +221,11 @@
                             <ColumnDefinition Width="auto" />
                         </Grid.ColumnDefinitions>
                         <Label Grid.Row="0" Grid.Column="0" Foreground="{DynamicResource Brush_LabelForegroundDark}" Padding="0,0,10,0">Designed by:</Label>
-                        <Label Grid.Row="0" Grid.Column="1" Foreground="{DynamicResource Brush_LabelForegroundDark}">SPi</Label>
+                        <Label Grid.Row="0" Grid.Column="1" Foreground="{DynamicResource Brush_LabelForegroundDark}">NAKSHATRA__12</Label>
                         <Label Grid.Row="1" Grid.Column="0" Foreground="{DynamicResource Brush_LabelForegroundDark}" Padding="0,0,10,0">Developed by:</Label>
-                        <Label Grid.Row="1" Grid.Column="1" Foreground="{DynamicResource Brush_LabelForegroundDark}">Scillman</Label>
+                        <Label Grid.Row="1" Grid.Column="1" Foreground="{DynamicResource Brush_LabelForegroundDark}">NAKSHATRA__12</Label>
                         <Label Grid.Row="3" Grid.Column="0" Foreground="{DynamicResource Brush_LabelForegroundDark}" Padding="0,0,10,0">Version:</Label>
-                        <Label Grid.Row="3" Grid.Column="1" Foreground="{DynamicResource Brush_LabelForegroundDark}">2.0a</Label>
+                        <Label Grid.Row="3" Grid.Column="1" Foreground="{DynamicResource Brush_LabelForegroundDark}">1.0</Label>
                         <Label Grid.Row="4" Grid.Column="0" Foreground="{DynamicResource Brush_LabelForegroundDark}" Padding="0,0,10,0">Built:</Label>
                         <Label Grid.Row="4" Grid.Column="1" Foreground="{DynamicResource Brush_LabelForegroundDark}">20021602</Label>
                     </Grid>

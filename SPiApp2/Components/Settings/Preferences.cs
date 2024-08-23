@@ -75,7 +75,8 @@ namespace SPiApp2.Components.Settings
             // Default values
             SetDefaultString(INSTALL_PATH, GetDefaultInstallPath());
             SetDefaultString(ZIPPER, string.Format("mods{0}ModWarfare{0}7za.exe", Path.DirectorySeparatorChar));
-            SetDefaultString(EXECUTABLE, "iw3sp.exe");
+            //SetDefaultString(EXECUTABLE, "iw3sp.exe");
+            SetDefaultString(EXECUTABLE, "CoDWaW.exe");
         }
 
         protected override string GetPath()
@@ -98,31 +99,36 @@ namespace SPiApp2.Components.Settings
             string _installPath = null;
 
             // 64-bit from DVD
-            if (Registry.CheckKey(ref _installPath, "SOFTWARE\\WOW6432Node\\Activision\\Call of Duty 4", "InstallPath"))
+            //if (Registry.CheckKey(ref _installPath, "SOFTWARE\\WOW6432Node\\Activision\\Call of Duty 4", "InstallPath"))
+            if (Registry.CheckKey(ref _installPath, "SOFTWARE\\WOW6432Node\\Activision\\Call of Duty World at War", "InstallPath"))
             {
                 return _installPath;
             }
 
             // 64-bit from Steam
-            if (Registry.CheckKey(ref _installPath, "SOFTWARE\\WOW6432Node\\Valve\\Steam\\Apps\\7940", "installpath"))
+            //if (Registry.CheckKey(ref _installPath, "SOFTWARE\\WOW6432Node\\Valve\\Steam\\Apps\\7940", "installpath"))
+            if (Registry.CheckKey(ref _installPath, "SOFTWARE\\WOW6432Node\\Valve\\Steam\\Apps\\10090", "installpath"))
             {
                 return _installPath;
             }
 
             // 32-bit from DVD
-            if (Registry.CheckKey(ref _installPath, "SOFTWARE\\Activision\\Call of Duty 4", "InstallPath"))
+            //if (Registry.CheckKey(ref _installPath, "SOFTWARE\\Activision\\Call of Duty 4", "InstallPath"))
+            if (Registry.CheckKey(ref _installPath, "SOFTWARE\\Activision\\Call of Duty World at War", "InstallPath"))
             {
                 return _installPath;
             }
 
             // 32-bit from Steam
-            if (Registry.CheckKey(ref _installPath, "SOFTWARE\\Valve\\Steam\\Apps\\7940", "installpath"))
+            //if (Registry.CheckKey(ref _installPath, "SOFTWARE\\Valve\\Steam\\Apps\\7940", "installpath"))
+            if (Registry.CheckKey(ref _installPath, "SOFTWARE\\Valve\\Steam\\Apps\\10090", "installpath"))
             {
                 return _installPath;
             }
 
             // Otherwise there is no directory, set the default
-            return string.Format("C:{0}Program Files (x86){0}Activision{0}Call of Duty 4", Path.DirectorySeparatorChar);
+            //return string.Format("C:{0}Program Files (x86){0}Activision{0}Call of Duty 4", Path.DirectorySeparatorChar);
+            return string.Format("C:{0}Program Files (x86){0}Activision{0}Call of Duty World at War", Path.DirectorySeparatorChar);
         }
 
         /// <summary>

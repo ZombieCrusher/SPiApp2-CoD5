@@ -7,12 +7,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SPiApp2")]
-[assembly: AssemblyDescription("(S) Compile Tools for Call of Duty 4.")]
+[assembly: AssemblyTitle("WaWSPiApp2")]
+[assembly: AssemblyDescription("Compile Tools for Call of Duty World at War")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SPiApp2")]
-[assembly: AssemblyCopyright("Copyright ©2018")]
+[assembly: AssemblyProduct("WaWSPiApp2")]
+[assembly: AssemblyCopyright("Copyright ©2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,7 +51,7 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: NeutralResourcesLanguage("en-US")]
 
