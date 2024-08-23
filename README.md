@@ -1,2 +1,2 @@
-# SPiApp2-CoD5
- 
+# SPiApp-opensource
+Source code of the SPiApp.
