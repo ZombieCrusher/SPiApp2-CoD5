@@ -25,15 +25,17 @@ namespace SPiApp2.Components
 
         public static void BrowseFolder()
         {
+            // C:\Users\UserName\AppData\Local\Activision\CoDWaW\mods
             UserData.Instance.Save();
 
             string selectedMod = UserData.SelectedMod;
-            string installPath = Preferences.InstallPath;
+            // string installPath = Preferences.InstallPath;
             char sep = System.IO.Path.DirectorySeparatorChar;
 
             if (!string.IsNullOrWhiteSpace(selectedMod))
             {
-                string path = string.Format("{0}{1}mods{1}{2}", installPath, sep, selectedMod);
+                //string path = string.Format("{0}{1}mods{1}{2}", installPath, sep, selectedMod);
+                string path = string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\mods{1}{2}" , Environment.UserName , sep , selectedMod );
                 SPiApp2.Components.Application.Browse(path);
             }
         }
@@ -42,10 +44,12 @@ namespace SPiApp2.Components
         {
             UserData.Instance.Save();
 
+            string AppdataPath = string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\mods" , Environment.UserName );
+
             SPiApp2.Components.Application.Launch(
-                string.Format("{0}{1}bin{1}mod_build.bat", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar),
+                string.Format("{0}{1}WaWSPiApp2{1}bin{1}mod_build.bat", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar),
                 Preferences.InstallPath,
-                string.Format("\"{0}\" {1} {2}", Preferences.InstallPath, Preferences.Language.ToLower(), UserData.SelectedMod)
+                string.Format("\"{0}\" {1} {2} {3}", Preferences.InstallPath, Preferences.Language.ToLower(), UserData.SelectedMod, AppdataPath)
             );
         }
 
@@ -108,7 +112,7 @@ namespace SPiApp2.Components
                 optional = string.Format("{0} {1}", optional, UserData.ModOptions);
 
             SPiApp2.Components.Application.Launch(
-                string.Format("{0}{1}bin{1}mod_run.bat", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar),
+                string.Format("{0}{1}WaWSPiApp2{1}bin{1}mod_run.bat", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar),
                 installPath,
                 string.Format("\"{0}\" {1} \"{2}\" {3} \"{4}\"", installPath, UserData.SelectedMod, Preferences.Executable, GetMultiplayerSign(), optional)
             );
@@ -121,8 +125,9 @@ namespace SPiApp2.Components
 
             list.SelectionChanged -= ChangedSelectedMod;
             list.Items.Clear();
-
-            string directory = string.Format("{0}{1}mods", Preferences.InstallPath, System.IO.Path.DirectorySeparatorChar);
+            // C:\Users\UserName\AppData\Local\Activision\CoDWaW\mods
+            //string directory = string.Format("{0}{1}mods", Preferences.InstallPath, System.IO.Path.DirectorySeparatorChar);
+            string directory = string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\mods", Environment.UserName);
             if (Directory.Exists(directory))
             {
                 string[] files = Directory.GetDirectories(directory, "*", SearchOption.TopDirectoryOnly);

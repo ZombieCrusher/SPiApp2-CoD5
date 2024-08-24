@@ -32,11 +32,11 @@ namespace SPiApp2.Components.Settings
         // Map
         private const string SELECTED_MAP = "SelectedMap";
         private const string SELECTED_MAP_TEMPLATE = "SelectedMapTemplate";
-        private const string MAP_DEVELOPER = "MapDeveloper";
-        private const string MAP_DEVELOPER_SCRIPT = "MapDeveloperScript";
-        private const string MAP_CHEATS = "MapCheats";
-        private const string MAP_CMD_KEY = "MapCustom";
-        private const string MAP_CMD_VAL = "MapOptions";
+        //private const string MAP_DEVELOPER = "MapDeveloper";
+        //private const string MAP_DEVELOPER_SCRIPT = "MapDeveloperScript";
+        //private const string MAP_CHEATS = "MapCheats";
+        //private const string MAP_CMD_KEY = "MapCustom";
+        //private const string MAP_CMD_VAL = "MapOptions";
 
         // Mod
         private const string SELECTED_MOD = "SelectedMod";
@@ -52,7 +52,7 @@ namespace SPiApp2.Components.Settings
         // Miscellaneous
         private const string GRID_MODEL_DOTS = "GridEnable";
         private const string GRID_EDIT_TYPE = "GridValue";
-        private const string CLEAR_MAP_MAIN = "ClearMapMain";
+        //private const string CLEAR_MAP_MAIN = "ClearMapMain";
         private const string CLEAR_MAP_MOD = "ClearMapMod";
         private const string CLEAR_MOD_MOD = "ClearModMod";
         private const string RADIANT_USE_MAP = "RadiantUseMap";
@@ -70,11 +70,11 @@ namespace SPiApp2.Components.Settings
             // Map
             Bind(SELECTED_MAP, string.Empty);
             Bind(SELECTED_MAP_TEMPLATE, "<none>");
-            Bind(MAP_DEVELOPER, ref window.ctrlMapDeveloper);
-            Bind(MAP_DEVELOPER_SCRIPT, ref window.ctrlMapDeveloperScript);
-            Bind(MAP_CHEATS, ref window.ctrlMapCheats);
-            Bind(MAP_CMD_KEY, ref window.ctrlMapCommandLineKey);
-            Bind(MAP_CMD_VAL, ref window.ctrlMapCommandLineValue);
+            //Bind(MAP_DEVELOPER, ref window.ctrlMapDeveloper);
+            //Bind(MAP_DEVELOPER_SCRIPT, ref window.ctrlMapDeveloperScript);
+            //Bind(MAP_CHEATS, ref window.ctrlMapCheats);
+            //Bind(MAP_CMD_KEY, ref window.ctrlMapCommandLineKey);
+            //Bind(MAP_CMD_VAL, ref window.ctrlMapCommandLineValue);
 
             // Mod
             Bind(SELECTED_MOD, string.Empty);
@@ -90,7 +90,7 @@ namespace SPiApp2.Components.Settings
             // Miscellaneous
             Bind(GRID_MODEL_DOTS, ref window.ctrlMapGridKey);
             Bind(GRID_EDIT_TYPE, ref window.ctrlMapGridValue);
-            Bind(CLEAR_MAP_MAIN, false);
+            //Bind(CLEAR_MAP_MAIN, false);
             Bind(CLEAR_MAP_MOD, false);
             Bind(CLEAR_MOD_MOD, false);
             Bind(RADIANT_USE_MAP, ref window.ctrlRadiantLoadMap);
@@ -98,7 +98,7 @@ namespace SPiApp2.Components.Settings
 
         protected override string GetPath()
         {
-            return string.Format("{0}{1}settings{1}app.state",
+            return string.Format("{0}{1}WaWSPiApp2{1}settings{1}app.state",
                 Environment.CurrentDirectory, Path.DirectorySeparatorChar);
         }
 
@@ -162,57 +162,57 @@ namespace SPiApp2.Components.Settings
         /// <summary>
         /// Get whether developer mode should be enabled when launching maps.
         /// </summary>
-        public static bool MapDeveloper
+       /* public static bool MapDeveloper
         {
             get
             {
                 return Instance.GetBool(MAP_DEVELOPER);
             }
-        }
+        }*/
 
         /// <summary>
         /// Get whether developer_script should be enabled when launching maps.
         /// </summary>
-        public static bool MapDeveloperScript
+        /*public static bool MapDeveloperScript
         {
             get
             {
                 return Instance.GetBool(MAP_DEVELOPER_SCRIPT);
             }
-        }
+        }*/
 
         /// <summary>
         /// Get whether thereisacow should be enabled when launching maps.
         /// </summary>
-        public static bool MapCheats
+        /*public static bool MapCheats
         {
             get
             {
                 return Instance.GetBool(MAP_CHEATS);
             }
-        }
+        }*/
 
         /// <summary>
         /// Get whether the custom command line for maps is to be used.
         /// </summary>
-        public static bool MapCustom
+        /*public static bool MapCustom
         {
             get
             {
                 return Instance.GetBool(MAP_CMD_KEY);
             }
-        }
+        }*/
 
         /// <summary>
         /// Get the custom command line options for maps.
         /// </summary>
-        public static string MapOptions
+        /*public static string MapOptions
         {
             get
             {
                 return Instance.GetString(MAP_CMD_VAL);
             }
-        }
+        }*/
 
         /// <summary>
         /// Get or set the last selected mod.
@@ -358,7 +358,7 @@ namespace SPiApp2.Components.Settings
         /// Get or set whether to clear the missingasset.csv file in the main directory when
         /// editing the assets file of a map.
         /// </summary>
-        public static bool ClearMapMain
+        /*public static bool ClearMapMain
         {
             get
             {
@@ -368,7 +368,7 @@ namespace SPiApp2.Components.Settings
             {
                 Instance.SetBool(CLEAR_MAP_MAIN, value);
             }
-        }
+        }*/
 
         /// <summary>
         /// Get or set whether to clear the missingasset.csv file in the selected mod's

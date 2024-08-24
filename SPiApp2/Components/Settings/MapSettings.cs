@@ -25,6 +25,7 @@ namespace SPiApp2.Components.Settings
         private const string COMPILE_BSP = "bsp";
         private const string COMPILE_LIGHTING = "light";
         private const string CONNECT_PATHS = "paths";
+        private const string COMPILE_VIS = "vis";
 
         // BSP Options
         private const string BSP_ONLY_ENTS = "onlyents";
@@ -59,6 +60,7 @@ namespace SPiApp2.Components.Settings
             Bind(COMPILE_BSP, ref window.ctrlMapCompileBSP);
             Bind(COMPILE_LIGHTING, ref window.ctrlMapCompileLighting);
             Bind(CONNECT_PATHS, ref window.ctrlMapConnectPaths);
+            Bind(COMPILE_VIS, ref window.ctrlMapCompileVis);
 
             // BSP Options
             Bind(BSP_ONLY_ENTS, ref window.ctrlMapBSPOnlyEnts);
@@ -87,7 +89,7 @@ namespace SPiApp2.Components.Settings
 
         protected override string GetPath()
         {
-            return string.Format("{0}{1}settings{1}maps{1}{2}.settings",
+            return string.Format("{0}{1}WaWSPiApp2{1}settings{1}maps{1}{2}.settings",
                 Environment.CurrentDirectory, Path.DirectorySeparatorChar, UserData.SelectedMap);
         }
 
@@ -132,6 +134,21 @@ namespace SPiApp2.Components.Settings
             get
             {
                 if (GetBool(CONNECT_PATHS))
+                {
+                    return "1";
+                }
+                else
+                {
+                    return "0";
+                }
+            }
+        }
+
+        public string CompileVis
+        {
+            get
+            {
+                if (GetBool(COMPILE_VIS))
                 {
                     return "1";
                 }

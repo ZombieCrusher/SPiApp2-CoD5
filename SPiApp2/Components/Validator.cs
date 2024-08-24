@@ -83,16 +83,16 @@ namespace SPiApp2.Components
                     return false;
                 }
 
-                if (Security.CreateMD5(path, out byte[] hash))
-                {
-                    if (0 != toolFile.CompareTo(hash))
-                    {
-                        SPiApp2.Controls.Console.WriteLine(string.Format(
-                            "Hash of '{0}' does not match that of the same binary" +
-                                " as found in the lastest version of the mod tools.", toolFile.FileName));
-                        break;
-                    }
-                }
+                //if (Security.CreateMD5(path, out byte[] hash))
+                //{
+                //    if (0 != toolFile.CompareTo(hash))
+                //    {
+                //        SPiApp2.Controls.Console.WriteLine(string.Format(
+                //            "Hash of '{0}' does not match that of the same binary" +
+                //                " as found in the lastest version of the mod tools.", toolFile.FileName));
+                //        break;
+                //    }
+                //}
             }
 
             return true;

@@ -36,9 +36,9 @@
         </Grid.ColumnDefinitions>
 
         <TabControl Grid.Row="0" Grid.Column="0" Margin="10,10,5,10" x:Name="tabMissing">
-            <TabItem x:Name="headerMissingMain" Header="main/missingasset.csv">
+            <!--<TabItem x:Name="headerMissingMain" Header="main/missingasset.csv" Margin="2,0,-1,0">
                 <TextBox Style="{StaticResource RichTextStyle}" x:Name="textMain" />
-            </TabItem>
+            </TabItem>-->
             <TabItem x:Name="headerMissingMods" Header="mods/yourmodname/mod.csv">
                 <TextBox Style="{StaticResource RichTextStyle}" x:Name="textMods" />
             </TabItem>
@@ -68,8 +68,9 @@
                 </Border.Background>
             </Border>
 
-            <CheckBox Grid.Row="1" Grid.Column="0" Margin="3,3,3,3" x:Name="clearMain">Clear main.csv on save</CheckBox>
-            <CheckBox Grid.Row="1" Grid.Column="1" Margin="0,3,0,3" x:Name="clearMod">Clear mods.csv on save</CheckBox>
+            <!--<CheckBox Grid.Row="1" Grid.Column="0" Margin="3,3,3,3" x:Name="clearMain">Clear main.csv on save</CheckBox>-->
+            <!--<CheckBox Grid.Row="1" Grid.Column="1" Margin="0,3,0,3" x:Name="clearMod">Clear mods.csv on save</CheckBox>-->
+            <CheckBox Grid.Row="1" Grid.Column="0" Margin="0,3,0,3" x:Name="clearMod">Clear modname/missingasset.csv on save</CheckBox>
             <Button Grid.Row="1" Grid.Column="2" Margin="3,3,3,3" Click="Click_Save">Save</Button>
         </Grid>
     </Grid>

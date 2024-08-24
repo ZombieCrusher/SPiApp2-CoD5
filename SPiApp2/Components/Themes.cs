@@ -21,7 +21,7 @@ namespace SPiApp2.Components
         /// <returns>The full path to the themes directory.</returns>
         public static string GetThemesPath()
         {
-            return string.Format("{0}{1}themes", Environment.CurrentDirectory, Path.DirectorySeparatorChar);
+            return string.Format("{0}{1}{2}{1}themes", Environment.CurrentDirectory, Path.DirectorySeparatorChar , "WaWSPiApp2");
         }
 
         /// <summary>
@@ -60,8 +60,7 @@ namespace SPiApp2.Components
                     }
                     else
                     {
-                        SPiApp2.Controls.Console.WriteLine(string.Format(
-                            "Theme '{0}' has been found invalid.", theme));
+                        SPiApp2.Controls.Console.WriteLine(string.Format("Theme '{0}' has been found invalid.", theme));
                     }
                 }
             }
@@ -199,10 +198,10 @@ namespace SPiApp2.Components
 
                             if (str.StartsWith("Themes/"))
                             {
-                                /* foreach (var key in dict.Keys)
+                                /*foreach (var key in dict.Keys)
                                 {
-                                    Debug.WriteLine(string.Format("{0} ==> \"{1}\"", key, dict[key]));
-                                } */
+                                    SPiApp2.Controls.Console.WriteLine(string.Format("{0} ==> \"{1}\"", key, dict[key]));
+                                }*/
 
                                 merged[i] = dict;
                                 break;

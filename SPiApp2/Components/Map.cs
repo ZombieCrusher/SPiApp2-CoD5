@@ -104,14 +104,16 @@ namespace SPiApp2.Components
             }
 
             // Compose the batch file argument
-            string arguments = string.Format("\"{0}\" {1} \"{2}\" \"{3}\" {4} {5} {6}",
+            string arguments = string.Format("\"{0}\" {1} \"{2}\" \"{3}\" {4} {5} {6} {7}",
                 Preferences.InstallPath, UserData.SelectedMap, paramBSPOptions, paramLightOptions,
-                settings.CompileBSP, settings.CompileLighting, settings.ConnectPaths
+                settings.CompileBSP, settings.CompileLighting, settings.ConnectPaths, settings.CompileVis
             );
 
             // Launch the batch file
             SPiApp2.Components.Application.Launch(
-                string.Format("{0}{1}bin{1}map_compile.bat", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar),
+                string.Format("{0}{1}WaWSPiApp2{1}bin{1}map_compile.bat", 
+                Environment.CurrentDirectory, 
+                System.IO.Path.DirectorySeparatorChar),
                 Preferences.InstallPath,
                 arguments
             );
@@ -125,7 +127,7 @@ namespace SPiApp2.Components
             UserData.Instance.Save();
 
             SPiApp2.Components.Application.Launch(
-                string.Format("{0}{1}bin{1}map_reflections.bat", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar),
+                string.Format("{0}{1}WaWSPiApp2{1}bin{1}map_reflections.bat", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar),
                 Preferences.InstallPath,
                 string.Format("\"{0}\" {1} {2}", Preferences.InstallPath, UserData.SelectedMap, GetMultiplayerSign())
             );
@@ -139,7 +141,7 @@ namespace SPiApp2.Components
             UserData.Instance.Save();
 
             SPiApp2.Components.Application.Launch(
-                string.Format("{0}{1}bin{1}map_build.bat", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar),
+                string.Format("{0}{1}WaWSPiApp2{1}bin{1}map_build.bat", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar),
                 Preferences.InstallPath,
                 string.Format("\"{0}\" {1} {2}", Preferences.InstallPath, Preferences.Language.ToLower(), UserData.SelectedMap)
             );
@@ -157,7 +159,7 @@ namespace SPiApp2.Components
         /// <summary>
         /// Call this to run the selected map.
         /// </summary>
-        public static void RunSelectedMap()
+        /*public static void RunSelectedMap()
         {
             // First save the settings
             UserData.Instance.Save();
@@ -187,7 +189,7 @@ namespace SPiApp2.Components
                 Preferences.InstallPath,
                 string.Format("{0} \"{1}\" \"{2}\" {3}", arguments, optional, exename, GetMultiplayerSign())
             );
-        }
+        }*/
 
         /// <summary>
         /// Call this to start the grid collection process.
@@ -207,7 +209,7 @@ namespace SPiApp2.Components
                 treepath, makelog, cullxmodel, mapname, exename, GetMultiplayerSign());
 
             SPiApp2.Components.Application.Launch(
-                string.Format("{0}{1}bin{1}map_grid.bat", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar),
+                string.Format("{0}{1}WaWSPiApp2{1}bin{1}map_grid.bat", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar),
                 Preferences.InstallPath,
                 arguments
             );
@@ -223,7 +225,8 @@ namespace SPiApp2.Components
             string selectedMap = UserData.SelectedMap;
 
             string bin = string.Format("{0}{1}bin", installPath, sep);
-            string exe = "CoD4Radiant.exe";
+            //string exe = "CoD4Radiant.exe";
+            string exe = "CoDWaWRadiant.exe";
 
             if (UserData.RadiantLoadMap)
             {

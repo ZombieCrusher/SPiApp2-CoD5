@@ -74,14 +74,15 @@ namespace SPiApp2.Components.Settings
 
             // Default values
             SetDefaultString(INSTALL_PATH, GetDefaultInstallPath());
-            SetDefaultString(ZIPPER, string.Format("mods{0}ModWarfare{0}7za.exe", Path.DirectorySeparatorChar));
+            //SetDefaultString(ZIPPER, string.Format("mods{0}ModWarfare{0}7za.exe", Path.DirectorySeparatorChar));
+            SetDefaultString(ZIPPER, string.Format("bin{0}7za.exe", Path.DirectorySeparatorChar));
             //SetDefaultString(EXECUTABLE, "iw3sp.exe");
             SetDefaultString(EXECUTABLE, "CoDWaW.exe");
         }
 
         protected override string GetPath()
         {
-            return string.Format("{0}{1}settings{1}app.pref",
+            return string.Format("{0}{1}WaWSPiApp2{1}settings{1}app.pref",
                 Environment.CurrentDirectory, Path.DirectorySeparatorChar);
         }
 
@@ -129,6 +130,8 @@ namespace SPiApp2.Components.Settings
             // Otherwise there is no directory, set the default
             //return string.Format("C:{0}Program Files (x86){0}Activision{0}Call of Duty 4", Path.DirectorySeparatorChar);
             return string.Format("C:{0}Program Files (x86){0}Activision{0}Call of Duty World at War", Path.DirectorySeparatorChar);
+            //return string.Format("C:{0}Program Files (x86){0}steam{0}steamapps{0}common{0}Call of Duty World at War", Path.DirectorySeparatorChar);
+            //return "";
         }
 
         /// <summary>

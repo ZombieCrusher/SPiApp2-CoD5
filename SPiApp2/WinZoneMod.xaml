@@ -34,7 +34,7 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-
+        
         <TabControl Grid.Row="0" Grid.Column="0" Margin="10,10,5,10">
             <TabItem x:Name="headerMissingMods" Header="missingasset.csv">
                 <TextBox Style="{StaticResource RichTextStyle}" x:Name="textMods" />

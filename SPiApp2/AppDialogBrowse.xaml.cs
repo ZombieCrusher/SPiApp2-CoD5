@@ -253,13 +253,13 @@ namespace SPiApp2
         {
             if (Directory.Exists(path) || File.Exists(path))
             {
-                var attribs = File.GetAttributes(path);
+                //var attribs = File.GetAttributes(path);
 
-                if (attribs.HasFlag(FileAttributes.Hidden))
-                    return false;
+                //if (attribs.HasFlag(FileAttributes.Hidden))
+                //    return false;
 
-                if (attribs.HasFlag(FileAttributes.System))
-                    return false;
+                //if (attribs.HasFlag(FileAttributes.System))
+                //    return false;
 
                 return true;
             }

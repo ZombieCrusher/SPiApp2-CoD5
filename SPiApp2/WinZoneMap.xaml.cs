@@ -1,4 +1,5 @@
 ﻿using SPiApp2.Components.Settings;
+using System;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -12,11 +13,11 @@ namespace SPiApp2
     /// </summary>
     public partial class WinZoneMap : SPiApp2.Controls.CompilerWindow
     {
-        private string MissingMain
+        /*private string MissingMain
         {
             get;
             set;
-        }
+        }*/
 
         private string MissingMods
         {
@@ -45,7 +46,7 @@ namespace SPiApp2
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             // Set the controls
-            clearMain.IsChecked = UserData.ClearMapMain;
+            //clearMain.IsChecked = UserData.ClearMapMain;
             clearMod.IsChecked = UserData.ClearMapMod;
             tabMissing.SelectedIndex = UserData.ZoneMapTab;
 
@@ -54,22 +55,26 @@ namespace SPiApp2
             string selectedMod = UserData.SelectedMod;
             string installPath = Preferences.InstallPath;
 
+            // C:\Users\UserName\AppData\Local\Activision\CoDWaW\mods
+
             // ugh...
             char sep = System.IO.Path.DirectorySeparatorChar;
 
             // Create the relative paths
-            string relMain = string.Format("main{0}missingasset.csv", sep);
-            string relMods = string.Format("mods{0}{1}{0}missingasset.csv", sep, selectedMod);
-            string relMap = string.Format("zone_source{0}{1}.csv", sep, selectedMap);
+            //string relMain = string.Format("main{0}missingasset.csv", sep);
+            //string relMods = string.Format("mods{0}{1}{0}missingasset.csv", sep, selectedMod);
+            string relMods = string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\mods\\{1}\\missingasset.csv", Environment.UserName, selectedMod);
+            string relMap = string.Format("zone_source{0}{1}.csv", sep, selectedMap);            
 
             // Apply the relative to the headers
-            headerMissingMain.Header = relMain;
+            //headerMissingMain.Header = relMain;
             headerMissingMods.Header = relMods;
             headerZoneMap.Header = relMap;
 
             // Create and store the absolute paths
-            MissingMain = string.Format("{0}{1}{2}", installPath, sep, relMain);
-            MissingMods = string.Format("{0}{1}{2}", installPath, sep, relMods);
+            //MissingMain = string.Format("{0}{1}{2}", installPath, sep, relMain);
+            //MissingMods = string.Format("{0}{1}{2}", installPath, sep, relMods);
+            MissingMods = string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\mods\\{1}\\missingasset.csv", Environment.UserName, selectedMod);
             ZoneFile = string.Format("{0}{1}{2}", installPath, sep, relMap);
 
             // Start the dispatcher
@@ -88,10 +93,10 @@ namespace SPiApp2
             {
                 textZone.Text = File.ReadAllText(ZoneFile, Encoding.ASCII);
 
-                if (File.Exists(MissingMain))
-                {
-                    textMain.Text = File.ReadAllText(MissingMain, Encoding.ASCII);
-                }
+                //if (File.Exists(MissingMain))
+                //{
+                //    textMain.Text = File.ReadAllText(MissingMain, Encoding.ASCII);
+                //}
 
                 if (File.Exists(MissingMods))
                 {
@@ -103,7 +108,7 @@ namespace SPiApp2
         private void Click_Save(object sender, RoutedEventArgs e)
         {
             // First save the settings
-            UserData.ClearMapMain = clearMain.IsChecked.Value;
+            //UserData.ClearMapMain = clearMain.IsChecked.Value;
             UserData.ClearMapMod = clearMod.IsChecked.Value;
             UserData.Instance.Save();
 
@@ -111,10 +116,10 @@ namespace SPiApp2
             File.WriteAllText(ZoneFile, textZone.Text, Encoding.ASCII);
 
             // Clear the files is the user so desires
-            if (UserData.ClearMapMain)
-            {
-                File.WriteAllText(MissingMain, "\n", Encoding.ASCII);
-            }
+            //if (UserData.ClearMapMain)
+            //{
+            //    File.WriteAllText(MissingMain, "\n", Encoding.ASCII);
+            //}
 
             if (UserData.ClearMapMod)
             {

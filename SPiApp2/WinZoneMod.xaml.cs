@@ -1,4 +1,5 @@
 ﻿using SPiApp2.Components.Settings;
+using System;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -43,22 +44,27 @@ namespace SPiApp2
 
             // Get repeating settings
             string selectedMod = UserData.SelectedMod;
-            string installPath = Preferences.InstallPath;
+            //string installPath = Preferences.InstallPath;
 
             // ugh...
             char sep = System.IO.Path.DirectorySeparatorChar;
 
             // Create the relative paths
-            string relMods = string.Format("mods{0}{1}{0}missingasset.csv", sep, selectedMod);
-            string relZone = string.Format("mods{0}{1}{0}mod.csv", sep, selectedMod);
+            // C:\Users\UserName\AppData\Local\Activision\CoDWaW\mods
+            //string relMods = string.Format("mods{0}{1}{0}missingasset.csv", sep, selectedMod);
+            //string relZone = string.Format("mods{0}{1}{0}mod.csv", sep, selectedMod);
+            string relMods = string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\mods\\{1}\\missingasset.csv", Environment.UserName , selectedMod );
+            string relZone = string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\mods\\{1}\\mod.csv", Environment.UserName , selectedMod);
 
             // Apply the relative to the headers
             headerMissingMods.Header = relMods;
             headerZoneMod.Header = relZone;
 
             // Create and store the absolute paths
-            MissingMods = string.Format("{0}{1}{2}", installPath, sep, relMods);
-            ZoneFile = string.Format("{0}{1}{2}", installPath, sep, relZone);
+            //MissingMods = string.Format("{0}{1}{2}", installPath, sep, relMods);
+            //ZoneFile = string.Format("{0}{1}{2}", installPath, sep, relZone);
+            MissingMods = string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\mods\\{1}\\missingasset.csv", Environment.UserName, selectedMod);
+            ZoneFile = string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\mods\\{1}\\mod.csv", Environment.UserName , selectedMod );
 
             // Start the dispatcher
             Dispatcher.Invoke(LoadData, DispatcherPriority.Normal);

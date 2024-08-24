@@ -34,7 +34,6 @@ namespace SPiApp.Common
                             Debug.WriteLine(temp);
                         }
                     }
-
                     return false;
                 }
             }

@@ -122,11 +122,10 @@ namespace SPiApp2
         /// <returns></returns>
         private bool Validate_CompilerInstallation()
         {
-            const string SUB_MESSAGE = "Please reinstall the tools.";
-            const string SPiAPP2FilesFolder = "WaWSPiApp2";
+            const string SUB_MESSAGE = "Please reinstall the tools.";            
             // 1) Check for the existence of the bin directory
             //string directory = string.Format("{0}{1}bin", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar);
-            string directory = string.Format("{0}{1}{2}{1}bin", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar , SPiAPP2FilesFolder);
+            string directory = string.Format("{0}{1}WaWSPiApp2{1}bin", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar);
             if (!Directory.Exists(directory))
             {
                 //SPiApp2.Controls.Console.WriteLine(string.Format("Could not locate the bin directory.{0}", SUB_MESSAGE));
@@ -140,7 +139,7 @@ namespace SPiApp2
                 "map_compile.bat",
                 "map_grid.bat",
                 "map_reflections.bat",
-                "map_run.bat",
+                // "map_run.bat",
                 "mod_build.bat",
                 "mod_iwd.bat",
                 "mod_run.bat"
@@ -159,7 +158,7 @@ namespace SPiApp2
             }
 
             // 3) Create the settings directories
-            string settingsDirectory = string.Format("{0}{1}settings", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar);
+            string settingsDirectory = string.Format("{0}{1}WaWSPiApp2{1}settings", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar);
             if (!Directory.Exists(settingsDirectory))
             {
                 Directory.CreateDirectory(settingsDirectory);
@@ -530,10 +529,10 @@ namespace SPiApp2
             Map.UpdateZoneFile();
         }
 
-        private void Click_MapRunSelected(object sender, RoutedEventArgs e)
-        {
-            Map.RunSelectedMap();
-        }
+        //private void Click_MapRunSelected(object sender, RoutedEventArgs e)
+        //{
+        //    Map.RunSelectedMap();
+        //}
 
         private void Click_MapStartGrid(object sender, RoutedEventArgs e)
         {
@@ -561,7 +560,7 @@ namespace SPiApp2
 
             SPiApp2.Components.Application.OpenTextFile(directory,
                 string.Format("{0}.gsc", UserData.SelectedMap));
-        }
+        }        
 
         private void Click_MapBrowseFileCode(object sender, RoutedEventArgs e)
         {
@@ -577,6 +576,22 @@ namespace SPiApp2
 
             SPiApp2.Components.Application.OpenTextFile(directory,
                 string.Format("{0}_code.gsc", UserData.SelectedMap));
+        }
+
+        private void Click_MapBrowseFileAmb(object sender, RoutedEventArgs e)
+        {
+            UserData.Instance.Save();
+
+            char sep = System.IO.Path.DirectorySeparatorChar;
+            string directory = string.Format("{0}{1}raw{1}maps", Preferences.InstallPath, sep);
+
+            if (Map.IsMultiplayerMap())
+            {
+                directory = string.Format("{0}{1}mp", directory, sep);
+            }
+
+            SPiApp2.Components.Application.OpenTextFile(directory,
+                string.Format("{0}_amb.gsc", UserData.SelectedMap));
         }
 
         private void Click_MapBrowseFileAnim(object sender, RoutedEventArgs e)
@@ -619,6 +634,54 @@ namespace SPiApp2
                 string.Format("{0}{1}raw{1}{2}{1}localizedstrings", Preferences.InstallPath, System.IO.Path.DirectorySeparatorChar,
                     Preferences.Language.ToLower()),
                 string.Format("{0}.str", UserData.SelectedMap));
+        }
+
+        private void Click_MapBrowseFileMapCSC(object sender, RoutedEventArgs e)
+        {
+            UserData.Instance.Save();
+
+            char sep = System.IO.Path.DirectorySeparatorChar;
+            string directory = string.Format("{0}{1}raw{1}clientscripts", Preferences.InstallPath, sep);
+
+            if (Map.IsMultiplayerMap())
+            {
+                directory = string.Format("{0}{1}mp", directory, sep);
+            }
+
+            SPiApp2.Components.Application.OpenTextFile(directory,
+                string.Format("{0}.csc", UserData.SelectedMap));
+        }
+
+        private void Click_MapBrowseFileAmbCSC(object sender, RoutedEventArgs e)
+        {
+            UserData.Instance.Save();
+
+            char sep = System.IO.Path.DirectorySeparatorChar;
+            string directory = string.Format("{0}{1}raw{1}clientscripts", Preferences.InstallPath, sep);
+
+            if (Map.IsMultiplayerMap())
+            {
+                directory = string.Format("{0}{1}mp", directory, sep);
+            }
+
+            SPiApp2.Components.Application.OpenTextFile(directory,
+                string.Format("{0}.csc", UserData.SelectedMap));
+        }
+
+        private void Click_MapBrowseFileFxCSC(object sender, RoutedEventArgs e)
+        {
+            UserData.Instance.Save();
+
+            char sep = System.IO.Path.DirectorySeparatorChar;
+            string directory = string.Format("{0}{1}raw{1}clientscripts", Preferences.InstallPath, sep);
+
+            if (Map.IsMultiplayerMap())
+            {
+                directory = string.Format("{0}{1}mp", directory, sep);
+            }
+
+            SPiApp2.Components.Application.OpenTextFile(directory,
+                string.Format("{0}_fx.csc", UserData.SelectedMap));
         }
 
         private void Click_MapBrowseFileSounds(object sender, RoutedEventArgs e)
@@ -823,12 +886,13 @@ namespace SPiApp2
             Button button = sender as Button;
             Debug.Assert(button != null);
 
-            string browse = null;
+            string browse;
 
-            if (button == ctrlBrowseLocalized || button == ctrlMapBrowseLocalized)
+            if (button == ctrlBrowseLocalized /* || button == ctrlMapBrowseLocalized */)
             {
                 browse = string.Format("raw/{0}/localizedstrings", Preferences.Language.ToLower());
             }
+            /*
             else if (button == ctrlBrowseImagesMain)
             {
                 browse = "main/images";
@@ -846,6 +910,22 @@ namespace SPiApp2
                         dialog.ShowDialog();
                     }
                 }
+            }
+            */
+            else if (button == ctrlBrowseModsAppdata)
+            {            
+                // C:\Users\UserName\AppData\Local\Activision\CoDWaW\mods                
+                string AddDataModpath = string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\mods", Environment.UserName);
+                if (!Directory.Exists(AddDataModpath))
+                {
+                    AppDialogMessage.Show(string.Format("Could not locate directory at '{0}'.", AddDataModpath),
+                        "Missing directory", MessageButtons.OK, MessageIcon.Warning);
+                }
+                else
+                {
+                    SPiApp2.Components.Application.Browse(AddDataModpath);
+                }
+                return;
             }
             else
             {
@@ -905,7 +985,7 @@ namespace SPiApp2
 
         private void Click_LaunchEffectsEd(object sender, RoutedEventArgs e)
         {
-            SPiApp2.Components.Application.Launch("CoD4EffectsEd.exe",
+            SPiApp2.Components.Application.Launch(/*"CoD4EffectsEd.exe"*/"EffectsEd3.exe",
                 string.Format("{0}{1}bin", Preferences.InstallPath, System.IO.Path.DirectorySeparatorChar));
         }
 
@@ -916,6 +996,19 @@ namespace SPiApp2
                 " effects you see in game. For example make a new" +
                 " explosion for your level or make a custom muzzleflash" +
                 " for you weapon.";
+        }
+
+        private void Click_LaunchAssetViewer(object sender, RoutedEventArgs e)
+        {
+            SPiApp2.Components.Application.Launch("AssetViewer.exe",
+                string.Format("{0}{1}bin", Preferences.InstallPath, System.IO.Path.DirectorySeparatorChar));
+        }
+
+        private void Hover_LaunchAssetViewer(object sender, MouseEventArgs e)
+        {
+            ctrlAppDescription.Text =
+                "Asset Viewer provides a convinient way to preview" +
+                " assets of the game without having to run the game.";               
         }
 
         private void Click_RunConverter(object sender, RoutedEventArgs e)

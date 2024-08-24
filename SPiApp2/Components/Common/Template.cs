@@ -184,7 +184,7 @@ namespace SPiApp2.Components.Common
                 start = copied;
                 length = (data.Length - start);
                 builder.Append(data.Substring(start, length));
-                copied += length;
+                //copied += length;
             }
 
             return builder.ToString();
@@ -222,7 +222,7 @@ namespace SPiApp2.Components.Common
                 keyword = KEYWORD_MODS;
             }
 
-            directory = string.Format("{0}{1}templates{1}{2}{1}{3}", Environment.CurrentDirectory, Path.DirectorySeparatorChar, directory, template);
+            directory = string.Format("{0}{1}WaWSPiApp2{1}templates{1}{2}{1}{3}", Environment.CurrentDirectory, Path.DirectorySeparatorChar, directory, template);
             if (!Directory.Exists(directory))
             {
                 throw new DescriptiveException(DescriptiveType.Warning,
@@ -253,7 +253,7 @@ namespace SPiApp2.Components.Common
                 typeName = DIRECTORY_MODS;
             }
 
-            string templatesDirectory = string.Format("{0}{1}templates{1}{2}", Environment.CurrentDirectory, Path.DirectorySeparatorChar, typeName);
+            string templatesDirectory = string.Format("{0}{1}WaWSPiApp2{1}templates{1}{2}", Environment.CurrentDirectory, Path.DirectorySeparatorChar, typeName);
             if (!Directory.Exists(templatesDirectory))
             {
                 return;

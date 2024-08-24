@@ -1,0 +1,25 @@
+SelectedTab,0
+SelectedTabOptions,0
+ZoneMapTab,0
+SelectedMap,mwzm_credits
+SelectedMapTemplate,"<none>"
+SelectedMod,MWZM
+SelectedModTemplate,"<none>"
+ModDeveloper,False
+ModDeveloperScript,False
+ModCheats,False
+ModUseMap,False
+ModCustom,False
+ModOptions,
+ModExeTarget,SP
+GridEnable,False
+GridValue,"Edit Existing Grid"
+ClearMapMod,True
+ClearModMod,False
+RadiantUseMap,True
+ClearMapMain,False
+MapOptions,
+MapCustom,False
+MapCheats,False
+MapDeveloperScript,False
+MapDeveloper,False
