@@ -742,15 +742,19 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" HorizontalAlignment="Right" Height="auto">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Margin="0,0,10,0" Click="Click_CopyConsole"
+                    <Button Grid.Column="0" Margin="0,0,10,0" Click="Click_ClearConsole"
+                            Visibility="Collapsed" x:Name="ctrlConsoleClear">Clear</Button>
+                    <Button Grid.Column="1" Margin="0,0,10,0" Click="Click_CopyConsole"
                             Visibility="Collapsed" x:Name="ctrlConsoleCopy">Copy</Button>
-                    <Button Grid.Column="1" Margin="0" Click="Click_ToggleConsole">Toggle</Button>
+                    <Button Grid.Column="2" Margin="0" Click="Click_ToggleConsole">Toggle</Button>
                 </Grid>
                 <TextBox Grid.Row="1" MaxHeight="100" AcceptsReturn="True" AcceptsTab="True"
                          VerticalScrollBarVisibility="Visible" Visibility="Collapsed"

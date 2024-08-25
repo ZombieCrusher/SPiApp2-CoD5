@@ -139,12 +139,41 @@ namespace SPiApp2.Components
         public static void BuildFastFile()
         {
             UserData.Instance.Save();
-
-            SPiApp2.Components.Application.Launch(
+            
+            SPiApp2.Components.Application.LaunchAndWaitUntilFinished(                
                 string.Format("{0}{1}WaWSPiApp2{1}bin{1}map_build.bat", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar),
                 Preferences.InstallPath,
                 string.Format("\"{0}\" {1} {2}", Preferences.InstallPath, Preferences.Language.ToLower(), UserData.SelectedMap)
             );
+                        
+            if( File.Exists( string.Format("{0}{1}zone{1}{2}{1}{3}", Preferences.InstallPath , Path.DirectorySeparatorChar , Preferences.Language.ToLower() , UserData.SelectedMap +".ff") ) ) 
+            {
+                // Moving to Root usermaps
+                if ( !Directory.Exists( string.Format("{0}{1}usermaps{1}{2}", Preferences.InstallPath, Path.DirectorySeparatorChar, UserData.SelectedMap ) ) ) 
+                {                    
+                    Directory.CreateDirectory(string.Format("{0}{1}usermaps{1}{2}", Preferences.InstallPath, Path.DirectorySeparatorChar, UserData.SelectedMap));
+                }
+                            
+                if ( File.Exists(string.Format("{0}{1}usermaps{1}{2}{1}{3}", Preferences.InstallPath, Path.DirectorySeparatorChar, UserData.SelectedMap, UserData.SelectedMap + ".ff")))
+                {                    
+                    File.Delete(string.Format("{0}{1}usermaps{1}{2}{1}{3}", Preferences.InstallPath, Path.DirectorySeparatorChar, UserData.SelectedMap, UserData.SelectedMap + ".ff"));                    
+                }
+                
+                File.Move(string.Format("{0}{1}zone{1}{2}{1}{3}", Preferences.InstallPath, Path.DirectorySeparatorChar, Preferences.Language.ToLower(), UserData.SelectedMap + ".ff"), string.Format("{0}{1}usermaps{1}{2}{1}{3}", Preferences.InstallPath, Path.DirectorySeparatorChar , UserData.SelectedMap , UserData.SelectedMap + ".ff") );
+
+                // Copying to appdata usermaps
+                if (!Directory.Exists(string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\usermaps\\{1}", Environment.UserName, UserData.SelectedMap)))
+                {
+                    Directory.CreateDirectory(string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\usermaps\\{1}", Environment.UserName, UserData.SelectedMap));
+                }
+
+                if (File.Exists(string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW{1}usermaps{1}{2}{1}{3}", Environment.UserName, Path.DirectorySeparatorChar, UserData.SelectedMap, UserData.SelectedMap + ".ff")))
+                {                    
+                    File.Delete(string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW{1}usermaps{1}{2}{1}{3}", Environment.UserName, Path.DirectorySeparatorChar, UserData.SelectedMap, UserData.SelectedMap + ".ff"));
+                }
+                
+                File.Copy(string.Format("{0}{1}usermaps{1}{2}{1}{3}", Preferences.InstallPath, Path.DirectorySeparatorChar, UserData.SelectedMap, UserData.SelectedMap + ".ff"), string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW{1}usermaps{1}{2}{1}{3}", Environment.UserName, Path.DirectorySeparatorChar, UserData.SelectedMap, UserData.SelectedMap + ".ff"));                
+            }                                   
         }
 
         /// <summary>

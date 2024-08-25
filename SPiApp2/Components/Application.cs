@@ -1,5 +1,6 @@
 ﻿using SPiApp2.Components.Common;
 using SPiApp2.Components.Settings;
+using System;
 using System.Diagnostics;
 using System.IO;
 using Path = System.IO.Path;
@@ -55,10 +56,12 @@ namespace SPiApp2.Components
                     }
                 }
 
-                ProcessStartInfo info = new ProcessStartInfo();
-                info.UseShellExecute = true;
-                info.FileName = exePath;
-                info.WorkingDirectory = workingDirectory;
+                ProcessStartInfo info = new ProcessStartInfo
+                {
+                    UseShellExecute = true,
+                    FileName = exePath,
+                    WorkingDirectory = workingDirectory
+                };
 
                 if (!string.IsNullOrEmpty(arguments))
                 {
@@ -66,6 +69,53 @@ namespace SPiApp2.Components
                 }
 
                 Process.Start(info);
+            }
+        }
+
+        /// <summary>
+        /// Launches an executable file and waits until its over.
+        /// </summary>
+        /// <param name="exePath">The absolute or relative path to the executable.</param>
+        /// <param name="workingDirectory">The working directory to used by the executable.</param>
+        /// <param name="arguments">The arguments to pass to the application.</param>
+        public static void LaunchAndWaitUntilFinished(string exePath, string workingDirectory , string arguments = null )
+        {
+            if (!Directory.Exists(workingDirectory))
+            {
+                AppDialogMessage.Show(string.Format("Could not locate directory at path '{0}'.", workingDirectory),
+                    "Missing directory", MessageButtons.OK, MessageIcon.Error);
+            }
+            else
+            {
+                if (!File.Exists(exePath))
+                {
+                    string altPath = string.Format("{0}{1}{2}", workingDirectory, Path.DirectorySeparatorChar, exePath);
+
+                    if (!File.Exists(altPath))
+                    {
+                        AppDialogMessage.Show(string.Format("Could not locate executable file at '{0}' or '{1}'.", exePath, altPath),
+                            "Missing executable", MessageButtons.OK, MessageIcon.Error);
+                    }
+                    else
+                    {
+                        exePath = altPath;
+                    }
+                }
+
+                ProcessStartInfo info = new ProcessStartInfo
+                {
+                    UseShellExecute = true,
+                    FileName = exePath,
+                    WorkingDirectory = workingDirectory
+                };
+
+                if (!string.IsNullOrEmpty(arguments))
+                {
+                    info.Arguments = arguments;
+                }
+                
+                Process info2 = Process.Start(info);          
+                info2.WaitForExit();                
             }
         }
 

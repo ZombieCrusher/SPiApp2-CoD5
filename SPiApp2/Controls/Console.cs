@@ -17,5 +17,16 @@ namespace SPiApp2.Controls
             Utility.GetWindow(out MainWindow window);
             window.ctrlConsole.Text += output;
         }
+
+        /// <summary>
+        /// clears the console.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="args"></param>
+        public static void ClearConsole()
+        {            
+            Utility.GetWindow(out MainWindow window);
+            window.ctrlConsole.Text = string.Empty;
+        }
     }
 }

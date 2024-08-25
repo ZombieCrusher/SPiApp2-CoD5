@@ -1131,6 +1131,7 @@ namespace SPiApp2
 
             console.Visibility = vis;
             ctrlConsoleCopy.Visibility = vis;
+            ctrlConsoleClear.Visibility = vis;
         }
 
         /// <summary>
@@ -1143,7 +1144,17 @@ namespace SPiApp2
             Clipboard.SetText(ctrlConsole.Text, TextDataFormat.Text);
         }
 
-#endregion
+        /// <summary>
+        /// Called when the user wants to clear the console.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Click_ClearConsole(object sender, RoutedEventArgs e)
+        {
+            SPiApp2.Controls.Console.ClearConsole();
+        }
+
+        #endregion
 
     }
 }
