@@ -626,6 +626,38 @@ namespace SPiApp2
                 string.Format("{0}_fx.gsc", UserData.SelectedMap));
         }
 
+        private void Click_MapBrowseFileCreateFx(object sender, RoutedEventArgs e)
+        {
+            UserData.Instance.Save();
+
+            char sep = System.IO.Path.DirectorySeparatorChar;
+            string directory = string.Format("{0}{1}raw{1}maps{1}createfx", Preferences.InstallPath, sep);
+
+            if (Map.IsMultiplayerMap())
+            {
+                directory = string.Format("{0}{1}mp{1}createfx", directory, sep);
+            }
+
+            SPiApp2.Components.Application.OpenTextFile(directory,
+                string.Format("{0}_fx.gsc", UserData.SelectedMap));
+        }
+
+        private void Click_MapBrowseFileCreateArt(object sender, RoutedEventArgs e)
+        {
+            UserData.Instance.Save();
+
+            char sep = System.IO.Path.DirectorySeparatorChar;
+            string directory = string.Format("{0}{1}raw{1}maps{1}createart", Preferences.InstallPath, sep);
+
+            if (Map.IsMultiplayerMap())
+            {
+                directory = string.Format("{0}{1}mp{1}createart", directory, sep);
+            }
+
+            SPiApp2.Components.Application.OpenTextFile(directory,
+                string.Format("{0}_art.gsc", UserData.SelectedMap));
+        }
+
         private void Click_MapBrowseFileStrings(object sender, RoutedEventArgs e)
         {
             UserData.Instance.Save();
@@ -678,6 +710,22 @@ namespace SPiApp2
             if (Map.IsMultiplayerMap())
             {
                 directory = string.Format("{0}{1}mp", directory, sep);
+            }
+
+            SPiApp2.Components.Application.OpenTextFile(directory,
+                string.Format("{0}_fx.csc", UserData.SelectedMap));
+        }
+
+        private void Click_MapBrowseFileCreateFxCSC(object sender, RoutedEventArgs e)
+        {
+            UserData.Instance.Save();
+
+            char sep = System.IO.Path.DirectorySeparatorChar;
+            string directory = string.Format("{0}{1}raw{1}clientscripts{1}createfx", Preferences.InstallPath, sep);
+
+            if (Map.IsMultiplayerMap())
+            {
+                directory = string.Format("{0}{1}mp{1}createfx", directory, sep);
             }
 
             SPiApp2.Components.Application.OpenTextFile(directory,

@@ -141,7 +141,7 @@ namespace SPiApp2.Components
             UserData.Instance.Save();
             
             SPiApp2.Components.Application.LaunchAndWaitUntilFinished(                
-                string.Format("{0}{1}WaWSPiApp2{1}bin{1}map_build.bat", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar),
+                string.Format("{0}{1}WaWSPiApp2{1}bin{1}map_build.bat", Preferences.InstallPath , System.IO.Path.DirectorySeparatorChar),
                 Preferences.InstallPath,
                 string.Format("\"{0}\" {1} {2}", Preferences.InstallPath, Preferences.Language.ToLower(), UserData.SelectedMap)
             );

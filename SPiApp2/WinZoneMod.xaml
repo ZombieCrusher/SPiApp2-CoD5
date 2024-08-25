@@ -65,7 +65,7 @@
                 </Border.Background>
             </Border>
 
-            <CheckBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="3,3,3,3" x:Name="clearMod">Clear missingassets.csv on save</CheckBox>
+            <CheckBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="3,3,3,3" x:Name="clearMod">Clear missingasset.csv on save</CheckBox>
             <Button Grid.Row="1" Grid.Column="2" Margin="0,3,3,3" Click="Click_Save">Save</Button>
         </Grid>
     </Grid>

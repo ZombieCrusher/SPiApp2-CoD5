@@ -39,39 +39,103 @@ namespace SPiApp2.Components
                 SPiApp2.Components.Application.Browse(path);
             }
         }
-
+        
+        // Since its appdata , its hard for bat files to do job 
+        // because of this many exceptions hit and crashes the application
+        // so its better i copy mod.csv in zone_source , compile mod.ff
+        // place the mod.ff in mods folder
+        // remove mod.csv and mod.ff from zone_source and zone_respectively
         public static void BuildFastFile()
         {
-            UserData.Instance.Save();
+            UserData.Instance.Save();           
 
             string AppdataPath = string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\mods" , Environment.UserName );
 
-            SPiApp2.Components.Application.Launch(
-                string.Format("{0}{1}WaWSPiApp2{1}bin{1}mod_build.bat", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar),
-                Preferences.InstallPath,
-                string.Format("\"{0}\" {1} {2} {3}", Preferences.InstallPath, Preferences.Language.ToLower(), UserData.SelectedMod, AppdataPath)
-            );
+            if (File.Exists(string.Format("{0}\\{1}\\mod.csv", AppdataPath, UserData.SelectedMod ) ) )
+            {                
+                File.Copy(string.Format("{0}\\{1}\\mod.csv", AppdataPath, UserData.SelectedMod ) , string.Format( "{0}\\zone_source\\mod.csv" , Preferences.InstallPath ) , true);
+                SPiApp2.Components.Application.LaunchAndWaitUntilFinished( string.Format("{0}{1}WaWSPiApp2{1}bin{1}mod_build.bat", Preferences.InstallPath , System.IO.Path.DirectorySeparatorChar),Preferences.InstallPath,
+                string.Format("\"{0}\" {1} {2}", Preferences.InstallPath, Preferences.Language.ToLower(), UserData.SelectedMap));
+
+                if(File.Exists(string.Format("{0}\\{1}\\mod.ff", AppdataPath, UserData.SelectedMod))) 
+                {
+                    File.Delete(string.Format("{0}\\{1}\\mod.ff", AppdataPath, UserData.SelectedMod));
+                }
+             
+                if (File.Exists(string.Format("{0}{1}zone{1}{2}{1}mod.ff", Preferences.InstallPath, Path.DirectorySeparatorChar, Preferences.Language.ToLower() ) ) )
+                {
+                    File.Move(string.Format("{0}{1}zone{1}{2}{1}mod.ff", Preferences.InstallPath, Path.DirectorySeparatorChar, Preferences.Language.ToLower()), string.Format("{0}\\{1}\\mod.ff", AppdataPath, UserData.SelectedMod));
+                }                
+
+                if (File.Exists(string.Format("{0}\\zone_source\\mod.csv", Preferences.InstallPath)))
+                {                    
+                    File.Delete(string.Format("{0}\\zone_source\\mod.csv", Preferences.InstallPath));                    
+                }
+            }
+            else
+            {
+                MessageResult result = AppDialogMessage.Show("mod.csv could not be located. Do you want to create a blank mod.csv?", "Missing File", MessageButtons.YesNo, MessageIcon.Question);
+                if (result == MessageResult.Yes)
+                {                                    
+                    File.Create(string.Format("{0}\\{1}\\mod.csv", AppdataPath, UserData.SelectedMod));
+                }
+                return;
+            }
         }
 
+        // Plan is to move all the folders in game folder mods 
+        // then make iwd there and sent them back to appdata
+        // and deleting the folders fro m game folder mods
         public static void BuildIWD()
         {
             UserData.Instance.Save();
 
+            string AppdataPath = string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\mods", Environment.UserName);
+
             char sep = System.IO.Path.DirectorySeparatorChar;
             string installPath = Preferences.InstallPath;
-            string zipper = Preferences.Zipper;
+            string zipper = Preferences.Zipper;            
 
-            if (!File.Exists(zipper))
+            if ( !Directory.Exists( string.Format("{0}\\mods\\{1}", Preferences.InstallPath, UserData.SelectedMod) ) ) 
             {
-                zipper = string.Format("{0}{1}{2}", installPath, sep, zipper);
-                Debug.Assert(File.Exists(zipper));
+                Directory.CreateDirectory(string.Format("{0}\\mods\\{1}", Preferences.InstallPath, UserData.SelectedMod));
             }
 
-            SPiApp2.Components.Application.Launch(
-                string.Format("{0}{1}bin{1}mod_iwd.bat", Environment.CurrentDirectory, sep),
+            string[] AppdataFolderNames = Directory.GetDirectories(string.Format("{0}\\{1}", AppdataPath, UserData.SelectedMod));
+
+            foreach ( var FolderPath in AppdataFolderNames ) 
+            {
+                string FolderName = FolderPath.Substring((AppdataPath+"\\"+UserData.SelectedMod+"\\").Length);
+                // move them to game dir to make iwds                                
+                Directory.Move(FolderPath, string.Format("{0}\\mods\\{1}\\{2}", Preferences.InstallPath, UserData.SelectedMod ,  FolderName));                                                                        
+            }
+
+            SPiApp2.Components.Application.LaunchAndWaitUntilFinished(
+                string.Format("{0}{1}WaWSPiApp2{1}bin{1}mod_iwd.bat", Environment.CurrentDirectory, sep),
                 installPath,
-                string.Format("\"{0}\" \"{1}\" {2}", installPath, zipper, UserData.SelectedMod)
+                string.Format("\"{0}\" \"{1}\" {2}", installPath, zipper, UserData.SelectedMod)                
             );
+
+            string[] MODSFolderNames = Directory.GetDirectories(string.Format("{0}\\mods\\{1}", Preferences.InstallPath , UserData.SelectedMod));
+
+            foreach (var FolderPath in MODSFolderNames)
+            {
+                string FolderName = FolderPath.Substring((Preferences.InstallPath + "\\mods\\" + UserData.SelectedMod + "\\").Length);                
+                Directory.Delete(string.Format("{0}\\mods\\{1}\\{2}", Preferences.InstallPath, UserData.SelectedMod, FolderName) ,true );
+            }
+            
+                File.Move(string.Format("{0}\\mods\\{1}\\{1}_assets.iwd", Preferences.InstallPath, UserData.SelectedMod) ,
+                    string.Format( "{0}\\{1}\\{1}_assets.iwd" , AppdataPath , UserData.SelectedMod));            
+
+            //SPiApp2.Controls.Console.WriteLine("exists " + FolderNames.Length);
+            // Directory.Move();
+
+            /*SPiApp2.Components.Application.LaunchAndWaitUntilFinished(
+                string.Format("{0}{1}WaWSPiApp2{1}bin{1}mod_iwd.bat", Environment.CurrentDirectory, sep),
+                installPath,
+                //string.Format("\"{0}\" \"{1}\" {2}", installPath, zipper, UserData.SelectedMod)
+                string.Format("\"{0}\" \"{1}\" {2}", AppdataPath+"\\"+UserData.SelectedMod, zipper, UserData.SelectedMod)
+            );*/
         }
 
         public static void UpdateZoneFile()

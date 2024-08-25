@@ -75,7 +75,7 @@ namespace SPiApp2.Components.Settings
             // Default values
             SetDefaultString(INSTALL_PATH, GetDefaultInstallPath());
             //SetDefaultString(ZIPPER, string.Format("mods{0}ModWarfare{0}7za.exe", Path.DirectorySeparatorChar));
-            SetDefaultString(ZIPPER, string.Format("bin{0}7za.exe", Path.DirectorySeparatorChar));
+            SetDefaultString( ZIPPER , "C:\\Program Files (x86)\\Steam\\steamapps\\Call of Duty World at War\\bin\\7za.exe" );
             //SetDefaultString(EXECUTABLE, "iw3sp.exe");
             SetDefaultString(EXECUTABLE, "CoDWaW.exe");
         }
