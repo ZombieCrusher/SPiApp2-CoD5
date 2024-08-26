@@ -95,7 +95,7 @@ namespace SPiApp2.Components.Settings
 
         protected override string GetAltPath()
         {
-            return string.Format("{0}{1}bin{1}CoD4CompileTools{1}{2}.settings",
+            return string.Format("{0}{1}bin{1}Launcher{1}map_settings{1}{2}.cfg",
                 Preferences.InstallPath, Path.DirectorySeparatorChar, UserData.SelectedMap);
         }
 

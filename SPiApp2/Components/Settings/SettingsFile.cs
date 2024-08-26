@@ -16,14 +16,14 @@ namespace SPiApp2.Components.Settings
         /// Get an indicator to whether or not synchronization
         /// between the 'Path' and 'AltPath' has to take place.
         /// </summary>
-        private bool Synchronize
+       /* private bool Synchronize
         {
             get
             {
                 return allowSync && Preferences.SyncTools;
             }
-        }
-        private readonly bool allowSync;
+        }*/
+        //private readonly bool allowSync;
 
         /// <summary>
         /// Creates a new SettingsFile object.
@@ -31,7 +31,7 @@ namespace SPiApp2.Components.Settings
         /// <param name="allowSync">Whether the file can be synched with the original compiler.</param>
         public SettingsFile(bool allowSync)
         {
-            this.allowSync = allowSync;
+            //this.allowSync = allowSync;
         }
 
         /// <summary>
@@ -428,10 +428,10 @@ namespace SPiApp2.Components.Settings
             };
 
             // Add the alternative path if we need to synchronize
-            if (Synchronize)
+            /*if (Synchronize)
             {
                 paths.Add(GetAltPath());
-            }
+            }*/
 
             StringBuilder builder = new StringBuilder();
 

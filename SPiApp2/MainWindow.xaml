@@ -133,10 +133,10 @@
                                     Compiler theme:
                                 </Label>
                                 <ComboBox Grid.Row="2" Grid.Column="1" Margin="0,3,0,3" IsReadOnly="True" x:Name="ctrlThemes" />
-                                <CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="3,3,3,3" x:Name="ctrlSynchronize"
-                                          ToolTip="Enabling this saves a copy of the map's settings for the original compile tools.">
+                                <!--<CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="3,3,3,3" x:Name="ctrlSynchronize"
+                                          ToolTip="Enabling this saves a copy of the map's settings for Launcher.">
                                     Synchronize Map Settings With Launcher
-                                </CheckBox>
+                                </CheckBox>-->
                                 <!-- BUTTONS -->
                                 <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,9,0,0">
                                     <Grid.ColumnDefinitions>

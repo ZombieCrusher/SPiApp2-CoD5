@@ -34,7 +34,7 @@ namespace SPiApp2.Components.Settings
         private const string EXECUTABLE = "Executable";
         private const string TEXT_EDITOR = "TextEditor";
         private const string THEME = "CompilerTheme";
-        private const string SYNC_TOOLS = "SyncTools";
+        // private const string SYNC_TOOLS = "SyncTools";
 
         // Optional
         private const string CUSTOM0_TEXT = "Custom0Text";
@@ -60,7 +60,7 @@ namespace SPiApp2.Components.Settings
             Bind(EXECUTABLE, ref window.ctrlExecutable);
             Bind(TEXT_EDITOR, ref window.ctrlEditor);
             Bind(THEME, Themes.THEME_DEFAULT);
-            Bind(SYNC_TOOLS, ref window.ctrlSynchronize);
+            // Bind(SYNC_TOOLS, ref window.ctrlSynchronize);
 
             // Optional
             Bind(CUSTOM0_TEXT, ref window.ctrlCustom0Text);
@@ -143,7 +143,7 @@ namespace SPiApp2.Components.Settings
 
             settings.Clear(EXECUTABLE);
             settings.Clear(TEXT_EDITOR);
-            settings.Clear(SYNC_TOOLS);
+            //settings.Clear(SYNC_TOOLS);
 
             settings.Save();
         }
@@ -193,13 +193,13 @@ namespace SPiApp2.Components.Settings
         /// <summary>
         /// Get the synchronization between these and the original compile tools.
         /// </summary>
-        public static bool SyncTools
+        /*public static bool SyncTools
         {
             get
             {
                 return Instance.GetBool(SYNC_TOOLS);
             }
-        }
+        }*/
 
         /// <summary>
         /// Get the prefered executable for running Call of Duty 4 Single Player.
