@@ -64,7 +64,15 @@ namespace SPiApp2.Components.Common
                 Debug.Assert(length > 0 && length < file.Length - 4);
 
                 string relPath = file.Substring(start, length).Replace(keyword.ToLower(), replacement.ToLower());
-                string destPath = string.Format("{0}{1}{2}", Preferences.InstallPath, Path.DirectorySeparatorChar, relPath);
+                string destPath;
+                if (keyword == KEYWORD_MODS)
+                {
+                    destPath = string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\mods{1}{2}", Environment.UserName , Path.DirectorySeparatorChar, relPath);
+                }
+                else
+                {
+                    destPath = string.Format("{0}{1}{2}", Preferences.InstallPath, Path.DirectorySeparatorChar, relPath);
+                }
 
                 destPath = destPath.Replace(keyword, replacement);
                 info.Add(file, destPath);

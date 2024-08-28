@@ -506,7 +506,7 @@
                                                 <ColumnDefinition Width="*" />
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
-                                            <Button Grid.Row="0" Grid.Column="0" Margin="0,3,3,6" Click="Click_ModCreateNew" IsEnabled="False">New Mod</Button>
+                                            <Button Grid.Row="0" Grid.Column="0" Margin="0,3,3,6" Click="Click_ModCreateNew">New Mod</Button>
                                             <Button Grid.Row="0" Grid.Column="1" Margin="3,3,0,6" Click="Click_ModRefreshList">Refresh</Button>
                                             <ListBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" x:Name="ctrlModList" />
                                         </Grid>
