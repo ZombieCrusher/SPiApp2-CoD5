@@ -62,7 +62,7 @@
                 <ColumnDefinition Width=".25*" />
                 <ColumnDefinition Width=".25*" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" Margin="3" Click="Click_Copy">Copy</Button>
+            <Button Grid.Row="0" Grid.Column="0" Margin="3" x:Name="buttoncopy" Click="Click_Copy">Copy</Button>
             <Button Grid.Row="0" Grid.Column="1" Margin="3" x:Name="button2" Click="Click_Button">Button #2</Button>
             <Button Grid.Row="0" Grid.Column="2" Margin="3" x:Name="button1" Click="Click_Button">Button #1</Button>
             <Button Grid.Row="0" Grid.Column="3" Margin="3" x:Name="button0" Click="Click_Button">Button #0</Button>

@@ -122,13 +122,10 @@ namespace SPiApp2
         /// <returns></returns>
         private bool Validate_CompilerInstallation()
         {
-            const string SUB_MESSAGE = "Please reinstall the tools.";            
-            // 1) Check for the existence of the bin directory
-            //string directory = string.Format("{0}{1}bin", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar);
+            const string SUB_MESSAGE = "Please reinstall the tools.";                        
             string directory = string.Format("{0}{1}WaWSPiApp2{1}bin", Environment.CurrentDirectory, System.IO.Path.DirectorySeparatorChar);
             if (!Directory.Exists(directory))
-            {
-                //SPiApp2.Controls.Console.WriteLine(string.Format("Could not locate the bin directory.{0}", SUB_MESSAGE));
+            {                
                 SPiApp2.Controls.Console.WriteLine(string.Format("Could not locate the WaWSPiApp2 or bin directory.{0}", SUB_MESSAGE));
                 return false;
             }
@@ -138,8 +135,7 @@ namespace SPiApp2
                 "map_build.bat",
                 "map_compile.bat",
                 "map_grid.bat",
-                "map_reflections.bat",
-                // "map_run.bat",
+                "map_reflections.bat",                
                 "mod_build.bat",
                 "mod_iwd.bat",
                 "mod_run.bat"
@@ -732,6 +728,17 @@ namespace SPiApp2
                 string.Format("{0}_fx.csc", UserData.SelectedMap));
         }
 
+        private void Click_MapBrowseFileVision(object sender, RoutedEventArgs e)
+        {
+            UserData.Instance.Save();
+
+            char sep = System.IO.Path.DirectorySeparatorChar;
+            string directory = string.Format("{0}{1}raw{1}vision{1}", Preferences.InstallPath, sep);            
+
+            SPiApp2.Components.Application.OpenTextFile(directory,
+                string.Format("{0}.vision", UserData.SelectedMap));
+        }
+
         private void Click_MapBrowseFileSounds(object sender, RoutedEventArgs e)
         {
             UserData.Instance.Save();
@@ -964,6 +971,21 @@ namespace SPiApp2
             {            
                 // C:\Users\UserName\AppData\Local\Activision\CoDWaW\mods                
                 string AddDataModpath = string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\mods", Environment.UserName);
+                if (!Directory.Exists(AddDataModpath))
+                {
+                    AppDialogMessage.Show(string.Format("Could not locate directory at '{0}'.", AddDataModpath),
+                        "Missing directory", MessageButtons.OK, MessageIcon.Warning);
+                }
+                else
+                {
+                    SPiApp2.Components.Application.Browse(AddDataModpath);
+                }
+                return;
+            }
+            else if (button == ctrlBrowseUserMaps)
+            {
+                // C:\Users\UserName\AppData\Local\Activision\CoDWaW\mods                
+                string AddDataModpath = string.Format("C:\\Users\\{0}\\AppData\\Local\\Activision\\CoDWaW\\usermaps", Environment.UserName);
                 if (!Directory.Exists(AddDataModpath))
                 {
                     AppDialogMessage.Show(string.Format("Could not locate directory at '{0}'.", AddDataModpath),

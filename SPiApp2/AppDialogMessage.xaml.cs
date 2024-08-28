@@ -82,6 +82,14 @@ namespace SPiApp2
             return dialog.Result;
         }
 
+        public static MessageResult Show(string message, string title, MessageButtons buttons, MessageIcon icon , bool NoCopyButtonHidden)
+        {
+            AppDialogMessage dialog = new AppDialogMessage(message, title, buttons, icon);
+            dialog.buttoncopy.Visibility = NoCopyButtonHidden ? Visibility.Hidden : Visibility.Visible ;
+            dialog.ShowDialog();
+            return dialog.Result;
+        }
+
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             // Content

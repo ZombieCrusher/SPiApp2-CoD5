@@ -58,16 +58,12 @@ namespace SPiApp2.Components
                 // Tools - User applications
                 new HashFile( "sp_tool.exe", Security.HASH_SP_TOOL ),
                 new HashFile( "mp_tool.exe", Security.HASH_MP_TOOL ),
-                new HashFile( string.Format("bin{0}asset_manager.exe", System.IO.Path.DirectorySeparatorChar), Security.HASH_ASSET_MANAGER ),
-                //new HashFile( string.Format("bin{0}CoD4EffectsEd.exe", System.IO.Path.DirectorySeparatorChar), Security.HASH_EFFECTS_ED ),
-                new HashFile( string.Format("bin{0}EffectsEd3.exe", System.IO.Path.DirectorySeparatorChar), Security.HASH_EFFECTS_ED ),
-                //new HashFile( string.Format("bin{0}CoD4Radiant.exe", System.IO.Path.DirectorySeparatorChar), Security.HASH_RADIANT ),
+                new HashFile( string.Format("bin{0}asset_manager.exe", System.IO.Path.DirectorySeparatorChar), Security.HASH_ASSET_MANAGER ),                
+                new HashFile( string.Format("bin{0}EffectsEd3.exe", System.IO.Path.DirectorySeparatorChar), Security.HASH_EFFECTS_ED ),                
                 new HashFile( string.Format("bin{0}CoDWaWRadiant.exe", System.IO.Path.DirectorySeparatorChar), Security.HASH_RADIANT ),
 
-                // Tools - Conversion and builders
-                //new HashFile( string.Format("bin{0}cod4map.exe", System.IO.Path.DirectorySeparatorChar), Security.HASH_COD4MAP ),
-                new HashFile( string.Format("bin{0}cod2map.exe", System.IO.Path.DirectorySeparatorChar), Security.HASH_COD4MAP ),
-                //new HashFile( string.Format("bin{0}cod4rad.exe", System.IO.Path.DirectorySeparatorChar), Security.HASH_COD4RAD ),
+                // Tools - Conversion and builders                
+                new HashFile( string.Format("bin{0}cod2map.exe", System.IO.Path.DirectorySeparatorChar), Security.HASH_COD4MAP ),                
                 new HashFile( string.Format("bin{0}cod2rad.exe", System.IO.Path.DirectorySeparatorChar), Security.HASH_COD4RAD ),
                 new HashFile( string.Format("bin{0}converter.exe", System.IO.Path.DirectorySeparatorChar), Security.HASH_CONVERTER ),
                 new HashFile( string.Format("bin{0}linker_pc.exe", System.IO.Path.DirectorySeparatorChar), Security.HASH_LINKER_PC )
@@ -129,10 +125,10 @@ namespace SPiApp2.Components
                 }
 
                 // Override the path with the alternative path
-                path = altPath;
+                //path = altPath;
             }
 
-            if (hash != null && Security.CreateMD5(path, out byte[] fileHash))
+            /*if (hash != null && Security.CreateMD5(path, out byte[] fileHash))
             {
                 for (int i = 0; i < 16; i++)
                 {
@@ -143,7 +139,7 @@ namespace SPiApp2.Components
                         break;
                     }
                 }
-            }
+            }*/
 
             return true;
         }

@@ -248,8 +248,7 @@ namespace SPiApp2.Components.Common
                 typeName = DIRECTORY_MAPS;
             }
             else
-            {
-                Debug.Assert(type == TemplateType.Mods);
+            {                
                 typeName = DIRECTORY_MODS;
             }
 
