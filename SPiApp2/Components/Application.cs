@@ -243,10 +243,12 @@ namespace SPiApp2.Components
             {
                 if (GetTextEditor(out string editor, out string arguments))
                 {
-                    ProcessStartInfo info = new ProcessStartInfo();
-                    info.FileName = editor;
-                    info.WorkingDirectory = directory;
-                    info.UseShellExecute = true;
+                    ProcessStartInfo info = new ProcessStartInfo
+                    {
+                        FileName = editor,
+                        WorkingDirectory = directory,
+                        UseShellExecute = true
+                    };
 
                     if (!string.IsNullOrEmpty(arguments))
                     {
